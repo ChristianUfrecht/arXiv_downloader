@@ -20,15 +20,16 @@ class ArXivDowloader():
     
     def download(self):
         '''downloads all articles that match the keywords to a new Desktop folder'''
-        print('creating desktop folder...')
+        print('check for Desktop folder...')
         Desktop_path = os.path.expanduser("~/Desktop")
         file_path=Desktop_path+'/New_on_arXiv'
         if not os.path.exists(file_path):
+            print('creating desktop folder...')
             os.makedirs(file_path)
         print('starting download...')
         total=len(self.ids)
         for index, cid in enumerate(self.ids):
-            print('    downloading file '+str(index)+'/'+str(total))
+            print('    downloading file '+str(index+1)+'/'+str(total))
             article_url='https://arxiv.org/pdf/' + cid  + '.pdf'    
             self.download_pdf(article_url , file_path +'/arXiv'+cid)
         print('--> done')
